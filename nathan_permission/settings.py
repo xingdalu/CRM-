@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'rbac.middleware.rbac.RbacMiddleware',
 ]
 
 ROOT_URLCONF = 'nathan_permission.urls'
@@ -66,6 +67,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
+        # 'libraries':{
+        #     'rbac':  'rbac.templatetags.rbac',
+        # }
     },
 ]
 
@@ -120,3 +124,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# #######用户权限设置#########
+
+PERMISSION_SESSION_KEY = 'nathan_permission_url_list_key'
+VALID_URL_LIST = [
+            '/login/',
+            '/admin/.*',
+        ]
+MENU_SESSION_KEY = 'nathan_permission_menu_key'
+
+# 设置redis
+SESSION_ENGINE = 'redis_sessions.session'
+SESSION_REDIS_HOST = 'localhost'
+SESSION_REDIS_PORT = 6379
+SESSION_REDIS_DB = 2
+SESSION_REDIS_PASSWORD = ''
+SESSION_REDIS_PREFIX = 'session'

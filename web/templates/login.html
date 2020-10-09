@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>用户登录</h1>
+    <form method="post">
+      {% csrf_token %}
+      <input type="text" name="user" value="" placeholder="请输入用户名">
+      <input type="password" name="pwd" value="" placeholder="请输入密码">
+      <button type="submit" name="button">提交</button>
+      <p style="color:red">{{ msg }}</p>
+    </form>
+
+</body>
+</html>
